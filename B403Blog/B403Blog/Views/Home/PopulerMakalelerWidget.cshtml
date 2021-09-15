@@ -1,0 +1,22 @@
+﻿
+
+@model IEnumerable<B403Blog.Models.Makale>
+
+<div class="sidebox widget">
+    <h3 class="widget-title section-title">Populer Makaleler</h3>
+    <ul class="post-list">
+        @foreach (B403Blog.Models.Makale makale in Model)
+        {
+            <li>
+                <div class="icon-overlay"> <a href="/Makale/Detay/@makale.MakaleId"><img src="@makale.Resim.KucukBoyut" alt="" /> </a> </div>
+                <div class="meta">
+                    <h5><a href="/Makale/Detay/@makale.MakaleId">@makale.Baslik</a></h5>
+                    <em>@makale.EklenmeTarihi.ToShortDateString() <span class="comments"><a href="#">@makale.Yorums.Count <i class="icon-chat-1"></i></a></span></em>
+                </div>
+            </li>
+        }
+       
+       
+    </ul>
+    <!-- /.post-list -->
+</div>

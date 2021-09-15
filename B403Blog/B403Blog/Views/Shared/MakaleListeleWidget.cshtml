@@ -1,0 +1,55 @@
+﻿@model IEnumerable<B403Blog.Models.Makale>
+
+
+@{ 
+    Layout = null;
+}
+
+
+
+
+@helper IcerikKisalt(string metin)
+{
+if (metin.Length > 300)
+{
+        <p>@metin.Substring(0, 300)</p>
+}
+else
+{
+        @metin
+}
+}
+@* burada custom bir helper olusturduk. Bu helper eger metin 300 karakterden kisaysa metini dondurecek eger uzunsa
+    metini bolup dondurecek. Boylece metin eger 300 karakterden kisaysa hata vermesini engellemis oldurk. *@
+
+
+<div class="blog-posts col-blog">
+    @foreach (B403Blog.Models.Makale mkl in Model)
+    {
+
+        <div class="post row">
+            <div class="col-sm-4">
+                <figure>
+                    <a href="blog-post.html">
+                        <div class="text-overlay">
+                            <div class="info"><span>Hepsini Oku</span></div>
+                        </div>
+                        <img src="@mkl.Resim.OrtaBoyut" alt="" />
+                    </a>
+                </figure>
+            </div>
+            <div class="col-sm-8 post-content">
+                <div class="meta">
+                    <span class="date">@mkl.EklenmeTarihi.ToShortDateString()</span>
+                    <span class="comments"><a href="#">@mkl.Yorums.Count <i class="icon-chat-1"></i></a></span>
+                </div>
+                <h2 class="post-title"><a href="/Makale/Detay/@mkl.MakaleId">@mkl.Baslik</a></h2>
+
+                <p>@IcerikKisalt(mkl.Icerik)</p>
+            </div>
+        </div>
+
+    }
+
+
+</div>
